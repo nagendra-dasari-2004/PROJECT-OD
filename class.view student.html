@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Details</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      color: black;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #831238;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .menu-container {
+      display: none;
+      flex-direction: column;
+      background-color: #831238;
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    .menu-container a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-container a:hover {
+      background-color: #6d0f2a;
+    }
+    .m{
+      padding: 20px;
+      padding-bottom: 0px;
+      place-items: center;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #666;
+      color: white;
+    }
+
+    .pending {
+      background-color: #ffc107;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .ongoing {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="left">
+      <!-- Added = icon for toggling the menu -->
+      <span id="toggle-menu" class="icon">=</span>
+       <!-- Menu container, hidden by default -->
+      <div class="menu-container" id="menu-container">
+        <a href="login.html">Login page</a>
+        <a href="teacher.html">Faculty Profile</a>
+        <a href="class.student mentored.html">Students Mentored</a>
+        <a href="class.approval.html">  Students Aproval</a>
+    </div>
+    <span>&#127760;</span> LANG
+    
+    </div>
+    <div class ="menu">
+      <h2>View All Students </h2>
+    </div>
+    <div class="right">
+      <span id= "bell" class="icon">&#128276;</span>
+      <span id="user"class="icon">&#128100;</span>
+      
+    </div>
+</div>
+
+  <div class ="m">
+    <span>DEPT: B.E</span>
+    <span>BRANCH: CSE</span>
+    <span>CLASS: 
+        <select id="class-select">
+        <option value="A1">none</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+        <option value="A4">A4</option>
+        <option value="A5">A5</option>
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+        <option value="B3">B3</option>
+        <option value="B4">B4</option>
+        <option value="B5">B5</option>
+        <option value="C1">C1</option>
+        <option value="C2">C2</option>
+        <option value="C3">C3</option>
+        <option value="C4">C4</option>
+        <option value="C5">C5</option>
+        </select>
+      </span>
+  </div>
+
+  <table class="table" id="student-table">
+    <tr>
+      <th>REGISTER NUMBER</th>
+      <th>EVENT NAME</th>
+      <th>NAME</th>
+      <th>EMAIL ID</th>
+      <th>CURRENT STATUS</th>
+    </tr>
+  </table>
+
+  <script>
+    // Toggle menu display
+    const toggleMenu = document.getElementById('toggle-menu');
+    const menuContainer = document.getElementById('menu-container');
+
+    toggleMenu.addEventListener('click', () => {
+      menuContainer.style.display =
+        menuContainer.style.display === 'none' || menuContainer.style.display === '' ? 'flex' : 'none';
+    });
+    document.getElementById('bell').addEventListener('click', () => {
+      alert('You have no new notifications.');
+    });
+
+    document.getElementById('user').addEventListener('click', () => {
+      alert('User profile functionality coming soon.');
+    });
+    // Handle class selection
+    const classSelect = document.getElementById('class-select');
+    const studentTable = document.getElementById('student-table');
+
+    classSelect.addEventListener('change', (e) => {
+      const selectedClass = e.target.value;
+      const studentData = getStudentData(selectedClass);
+      generateTableRows(studentData);
+    });
+
+    function getStudentData(selectedClass) {
+      const studentData = {
+    A1: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    A2: [
+      { registerNumber: '21158421', eventName: 'Event 3', name: 'Aravind', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+      { registerNumber: '42110250', eventName: 'Event 4', name: 'Aryan', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    A3: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    A4: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    A5: [
+      { registerNumber: '21158421', eventName: 'Event 3', name: 'Aravind', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+      { registerNumber: '42110250', eventName: 'Event 4', name: 'Aryan', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    B1: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    B2: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    B3: [
+      { registerNumber: '21158421', eventName: 'Event 3', name: 'Aravind', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+      { registerNumber: '42110250', eventName: 'Event 4', name: 'Aryan', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    B4: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    B5: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    C1: [
+      { registerNumber: '21158421', eventName: 'Event 3', name: 'Aravind', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+      { registerNumber: '42110250', eventName: 'Event 4', name: 'Aryan', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    C2: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    C3: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    C4: [
+      { registerNumber: '21158421', eventName: 'Event 3', name: 'Aravind', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+      { registerNumber: '42110250', eventName: 'Event 4', name: 'Aryan', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    C5: [
+      { registerNumber: '9876543', eventName: 'Event 1', name: 'Krishna', emailId: 'abcdefgh@gmail.com', status: 'PENDING' },
+      { registerNumber: '12345678', eventName: 'Event 2', name: 'Bala', emailId: 'abcdefgh@gmail.com', status: 'ONGOING' },
+    ],
+    // add more classes and data here
+  };
+      return studentData[selectedClass] || [];
+    }
+
+    function generateTableRows(studentData) {
+      // Clear existing rows
+      studentTable.innerHTML = `
+        <tr>
+          <th>REGISTER NUMBER</th>
+          <th>EVENT NAME</th>
+          <th>NAME</th>
+          <th>EMAIL ID</th>
+          <th>CURRENT STATUS</th>
+        </tr>
+      `;
+
+      // Populate rows with data
+      studentData.forEach((student) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${student.registerNumber}</td>
+          <td>${student.eventName}</td>
+          <td>${student.name}</td>
+          <td>${student.emailId}</td>
+          <td class="${student.status.toLowerCase()}">${student.status}</td>
+        `;
+        studentTable.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #831238;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .header .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu-container {
+            display: none;
+            flex-direction: column;
+            background-color: #831238;
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .menu-container a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .menu-container a:hover {
+            background-color: #6d0f2a;
+        }
+
+        .header .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .upcoming-events {
+            background-color: #831238;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+        }
+
+        table .enroll {
+            background-color: #66bb6a;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 50%;
+        }
+
+        table .enroll:hover {
+            background-color: #5aa456;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .footer button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .footer button:hover {
+            background-color: #d32f2f;
+        }
+
+        .footer .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .footer .success {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer .success img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .header .menu {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .header .icon {
+                font-size: 20px;
+                margin-top: 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 10px;
+            }
+
+            .footer button {
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px;
+            }
+
+            .header .menu a {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            table th, table td {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .footer {
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            .footer button {
+                padding: 8px 16px;
+            }
+
+            #search {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+          <span id="toggle-menu" class="icon">=</span>
+          <div class="menu-container" id="menu-container">
+            <a href="login.html">Login page</a>
+            <a href="teacher.html">Faculty Profile</a>
+            <a href="event.viewevent.html">View All Events</a>
+            <a href="event.Facultyevents.html">Faculty Events</a>
+            <a href="event.addevents.html">Add Events</a>
+            <a href="event.attendence.html">Attendence</a>
+          </div>
+          <span>&#127760;</span> LANG
+        </div>
+        <div class="menu">
+          <h2>Students Attended</h2>
+        </div>
+        <div class="right">
+          <span id="bell" class="icon">&#128276;</span>
+          <span id="user" class="icon">&#128100;</span>
+        </div>
+    </div>
+    <div class="container">
+        <input id="search" type="text" placeholder="Search events or venues" autocomplete="off">
+        <table id="events-table">
+            <thead>
+                <tr>
+                    <th>REGISTER NUMBER</th>
+                    <th>EVENT NAME</th>
+                    <th>NAME</th>
+                    <th>EMAIL ID</th>
+                    <th>STATUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>42110298</td>
+                    <td>Event 1</td>
+                    <td>RAMYA</td>
+                    <td>ramya@gmail.com</td>
+                    <td><button class="enroll">ATTENDED </button></td>
+                </tr>
+                <tr>
+                    <td>42110292</td>
+                    <td>Event 1</td>
+                    <td>RAMU</td>
+                    <td>ramu@gmail.com</td>
+                    <td><button class="enroll">NOT ATTENDED </button></td>
+                </tr>
+                <tr>
+                    <td>42110251</td>
+                    <td>Event 1</td>
+                    <td>RAJU</td>
+                    <td>raju@gmail.com</td>
+                    <td><button class="enroll">ATTENDED </button></td>
+                </tr>
+                <tr>
+                    <td>42110298</td>
+                    <td>Event 2</td>
+                    <td>RANI</td>
+                    <td>rani@gmail.com</td>
+                    <td><button class="enroll"> NOT ATTENDED </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#events-table tbody tr');
+
+            rows.forEach(row => {
+                const eventName = row.querySelector('td').textContent.toLowerCase();
+                const eventVenue = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                
+                if (eventName.includes(searchText) || eventVenue.includes(searchText)) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        });
+        const toggleMenu = document.getElementById('toggle-menu');
+        const menuContainer = document.getElementById('menu-container');
+
+        toggleMenu.addEventListener('click', () => {
+        menuContainer.style.display =
+            menuContainer.style.display === 'none' || menuContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        document.getElementById('bell').addEventListener('click', () => {
+        alert('You have no new notifications.');
+        });
+
+        document.getElementById('user').addEventListener('click', () => {
+        alert('User profile functionality coming soon.');
+        });
+    </script>
+</body>
+</html>

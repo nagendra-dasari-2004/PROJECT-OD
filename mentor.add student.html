@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #831238;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-container {
+            display: none;
+            flex-direction: column;
+            background-color: #831238;
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .menu-container a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .menu-container a:hover {
+            background-color: #6d0f2a;
+        }
+
+        .header .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 150px;
+            box-sizing: border-box;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            color: #831238;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .add-button {
+            background-color: #831238;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .add-button:hover {
+            background-color: #5aa456;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group label {
+                text-align: left;
+            }
+
+            .event-type {
+                flex-direction: column;
+            }
+
+            .add-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+            }
+
+            .footer {
+                flex-direction: column;
+            }
+
+            .footer button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+          <span id="toggle-menu" class="icon">=</span>
+          <div class="menu-container" id="menu-container">
+            <a href="login.html">Login page</a>
+            <a href="teacher.html">Faculty Profile</a>
+            <a href="mentor.student merntored.html">Students Mentored</a>
+          </div>
+          <span>&#127760;</span> LANG
+        </div>
+        <div class="menu">
+          <h2>Add Events</h2>
+        </div>
+        <div class="right">
+          <span id="bell" class="icon">&#128276;</span>
+          <span id="user" class="icon">&#128100;</span>
+        </div>
+    </div>
+    <div class="container">
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter name" required>
+      </div>
+      <div class="form-group">
+          <label for="regNo">Register Number</label>
+          <input type="text" id="regNo" name="regNo" placeholder="Enter register number" required>
+      </div>
+      <div class="form-group">  
+          <label for="purpose">Purpose</label>
+          <input type="text" id="purpose" name="purpose" placeholder="Enter purpose" required>
+        </div>
+        <div class="form-group">   
+          <label for="duration">Duration</label>
+          <input type="text" id="duration" name="duration" placeholder="Enter duration" required>
+        </div>
+        <div class="form-group">    
+          <label for="department">Department</label>
+          <input type="text" id="department" name="department" placeholder="Enter department" required>
+        </div>
+        <div class="form-group">    
+          <label for="section">Section</label>
+          <input type="text" id="section" name="section" placeholder="Enter section" required>
+        </div>   
+        <a href="event.Facultyevents.html"><button class="add-button">Add +</button></a>
+    </div>
+
+    <script>
+        const toggleMenu = document.getElementById('toggle-menu');
+        const menuContainer = document.getElementById('menu-container');
+
+        toggleMenu.addEventListener('click', () => {
+        menuContainer.style.display =
+            menuContainer.style.display === 'none' || menuContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        document.getElementById('bell').addEventListener('click', () => {
+        alert('You have no new notifications.');
+        });
+
+        document.getElementById('user').addEventListener('click', () => {
+        alert('User profile functionality coming soon.');
+        });
+    </script>
+</body>
+</html>

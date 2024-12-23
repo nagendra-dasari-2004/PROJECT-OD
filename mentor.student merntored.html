@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Details</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      color: black;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #831238;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .menu-container {
+      display: none;
+      flex-direction: column;
+      background-color: #831238;
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    .menu-container a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-container a:hover {
+      background-color: #6d0f2a;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #666;
+      color: white;
+    }
+
+    .pending {
+      background-color: #ffc107;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .ongoing {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="left">
+      <span id="toggle-menu" class="icon">=</span>
+      <div class="menu-container" id="menu-container">
+        <a href="login.html">Login page</a>
+        <a href="teacher.html">Faculty Profile</a>
+        <a href="mentor.add student.html">Add Students</a>
+      </div>
+      <span>&#127760;</span> LANG
+    </div>
+    <div class="menu">
+      <h2>Students Mentored</h2>
+    </div>
+    <div class="right">
+      <span id="bell" class="icon">&#128276;</span>
+      <span id="user" class="icon">&#128100;</span>
+    </div>
+  </div>
+
+  <!-- Responsive Table -->
+  <div class="table-responsive">
+    <table>
+      <tr>
+        <th>REGISTER NUMBER</th>
+        <th>EVENT NAME</th>
+        <th>NAME</th>
+        <th>EMAIL ID</th>
+        <th>CURRENT STATUS</th>
+      </tr>
+      <tr>
+        <td>9876543</td>
+        <td>EVENT NAME</td>
+        <td>KRISHNA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="pending">PENDING</td>
+      </tr>
+      <tr>
+        <td>12345678</td>
+        <td>EVENT NAME</td>
+        <td>BALA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="ongoing">ONGOING</td>
+      </tr>
+      <tr>
+        <td>9876543</td>
+        <td>EVENT NAME</td>
+        <td>KRISHNA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="pending">PENDING</td>
+      </tr>
+      <tr>
+        <td>9876543</td>
+        <td>EVENT NAME</td>
+        <td>KRISHNA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="pending">PENDING</td>
+      </tr>
+      <tr>
+        <td>9876543</td>
+        <td>EVENT NAME</td>
+        <td>KRISHNA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="pending">PENDING</td>
+      </tr>
+      <tr>
+        <td>12345678</td>
+        <td>EVENT NAME</td>
+        <td>BALA</td>
+        <td>abcdefgh@gmail.com</td>
+        <td class="ongoing">ONGOING</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    const toggleMenu = document.getElementById('toggle-menu');
+    const menuContainer = document.getElementById('menu-container');
+
+    toggleMenu.addEventListener('click', () => {
+      menuContainer.style.display =
+        menuContainer.style.display === 'none' || menuContainer.style.display === '' ? 'flex' : 'none';
+    });
+
+    document.getElementById('bell').addEventListener('click', () => {
+      alert('You have no new notifications.');
+    });
+
+    document.getElementById('user').addEventListener('click', () => {
+      alert('User profile functionality coming soon.');
+    });
+  </script>
+</body>
+</html>
